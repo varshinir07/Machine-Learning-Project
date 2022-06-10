@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>TITLE</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<style>
+.back{
+ background-image: url("{{ url_for('static', filename='') }}");
+ background-repeat:no-repeat;
+ background-size:cover;
+}
+.white{
+color:white;
+}
+.space{
+margin:15px 30px ;
+padding:9px 10px;
+background: palegreen;
+width:400px
+}
+.gap{
+padding:10px 20px;
+}
+.nspace{
+margin:20px 30px ;
+padding:9px 10px;
+background: palegreen;
+width:400px
+}
+</style>
+  
+</head>
+
+<body class="back">
+ <div>
+	<div class="jumbotron">
+	<h1 style="text-align:left">LIVER FAILURE PREDICTION SYSTEM </h1>
+	
+	</div>
+     <!-- Main Input For Receiving Query to our ML -->
+    <form class="form-group" action="{{ url_for('predict')}}"method="post">
+    		
+	<div class=" ">
+		
+		<div class="row">
+		<div class="gap col-md-5 col-4 ">
+
+		<label class="black" for=""><b>Age</b></label>
+		<input type="number" class="space form-control" step="0.01" name=" Age " placeholder=" Age " required="required" /><br>
+
+		<label class="black" for=""><b> Gender</b></label>
+		<select name='Gender' class="nspace form-control">
+			<option value = 1>  Male   </option>
+			<option value = 0>  Female   </option>
+		</select>
+		
+
+		<label class="black" for=""> <b>Total_Bilirubin</b></label>
+		<input type="number" class="space form-control" step="0.01" name=" Total_Bilirubin" placeholder=" Total_Bilirubin" required="required" /><br>
+
+		<label class="black" for=""><b> Direct_Bilirubin</b></label>
+		<input type="number" class="space form-control" step="0.01" name=" Direct_Bilirubin" placeholder=" Direct_Bilirubin" required="required" /><br>
+
+		<label class="black" for=""><b> Alkaline_Phosphotase</b></label>
+		<input type="number" class="space form-control" step="0.01" name=" Alkaline_Phosphotase" placeholder=" Alkaline_Phosphotase" required="required" /><br>
+		
+
+		
+	</div>
+
+
+
+	<div class="gap col-md-5">
+		
+		<label class="black" for=""><b> Alamine_Aminotransferase</b></label>
+		<input type="number" class="space form-control" step="0.01" name=" Alamine_Aminotransferase" placeholder=" Alamine_Aminotransferase" required="required" /><br>
+
+
+
+		<label class="black" for=""> <b>Aspartate_Aminotransferase</b></label>
+		<input type="number" class="space form-control" step="0.01" name=" Aspartate_Aminotransferase" placeholder=" Aspartate_Aminotransferase" required="required" /><br>
+
+		<label class="black" for=""> <b>Total_Protiens</b></label>
+		<input type="number" class="space form-control" step="0.01" name=" Total_Protiens" placeholder=" Total_Protiens" required="required" /><br>
+
+		<label class="black" for=""><b> Albumin</b></label>
+		<input type="number" class="space form-control" step="0.01" name=" Albumin" placeholder=" Albumin" required="required" /><br>
+
+		<label class="black" for=""> <b>Albumin_and_Globulin_Ratio</b></label>
+		<input type="number" class="space form-control" step="0.01" name=" Albumin_and_Globulin_Ratio" placeholder=" Albumin_and_Globulin_Ratio" required="required" /><br>
+
+		
+	</div>
+	
+
+
+
+
+		
+</div>
+</div>
+
+<div style="padding:2% 22%">
+  <button type="submit" class="btn btn-success btn-block" style="width:350px;padding:20px">Predict</button>		
+</div>
+      
+    </form>
+
+   <br>
+   <br>
+<div  style="background:skyblue;padding:2% 25%">
+   {{ prediction_text }}
+</div>
+ </div>
+
+
+</body>
+</html>
